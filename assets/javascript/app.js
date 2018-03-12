@@ -48,6 +48,7 @@ $(document).ready(function () {
         this.correctAnswer = correctAnswer;
     }
 
+    //Click the button to start the game.  This will run the setup function and star the timer
     $("#startGame").click(function() {
         startTimer();
         setupGame();
@@ -65,20 +66,28 @@ $(document).ready(function () {
             //Then we'll make sure the counter is still above 1 and, if not, run the function again
             if(n > 0) {
                 setTimeout(countDown, 1000);
-            }
+            }        
             console.log(n);
+            $("#gameTimer").text("Time Remaining: " + n);
         }
     }
     
     function setupGame() {
         //first we need to add a div for each question
         for (var i = 0; i < quizQuestionsEasy.length; i++) {
-            $(".jumbotron").append("<div id=" + quizQuestionsEasy[i].questionNumber + ">Question "+ (i+1) + ":" + "</div>");
-        
+            $(".jumbotron").append("<div id=" + quizQuestionsEasy[i].questionNumber + "><p>Question "+ (i+1) + ":" + "</p></div>");
             //call next function to add the question to each div
             addQuestion(quizQuestionsEasy[i].questionNumber, quizQuestionsEasy[i].question);
             addChoices(quizQuestionsEasy[i].questionNumber, quizQuestionsEasy[i].choices)
         }
+        //This adds a submit button at the bottom of the quiz to finish
+        $(".jumbotron").append("<button type='button' class='btn btn-success' id='gameOver'>I'm Finished!</button>");
+        //Clear some stuff out of the jumbotron
+        $("p.swap-button").empty();
+        $("p.clickInstruct").empty();
+        $("div.buffer").remove();
+        //Add the timer to the jumbotron
+        $("p.swap-button").append("<div id='gameTimer'></div>")
     };
 
     //function takes inputs of the question number(div ID) & question itself
@@ -87,17 +96,26 @@ $(document).ready(function () {
         var divIdName = "div#" + qNum;
         //target the div and append an h4 w/ the question
         $(divIdName).append("<h4>" + q + "</h4>");
+        $(divIdName).append("<form id=" + qNum + "></form");
     }
 
     //function takes inputs of the question number(div ID) & question choices.  This will append radio buttons to each question.
     function addChoices(qNum, choices) {
-        //declaring the same local variable as the last function
-        var divIdName = "div#" + qNum;
-        //store the form in a variable
-        var formContents = 
-        //target the div and append a form w/ radio buttons for each answer choice
-        $(divIdName).append()
+        //declaring a local variable to store the Form ID from the above function
+        var formIdName = "form#" + qNum;
+        //set up a loop to loop through the questionChoices and add a radio button for each
+        for (var i = 0; i < choices.length; i++) {
+                $("<label><input type='radio' name='options'>"+ choices[i] + "</label>").appendTo(formIdName);
+        }
     }
+
+    function endQuiz() {
+        $(".jumbotron").empty();
+        $(this).append("<h3>Please Wait while we calculate your results</p>");
+    }
+
+  
+
 
 
     

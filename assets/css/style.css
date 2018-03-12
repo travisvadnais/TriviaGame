@@ -1,7 +1,69 @@
+.jumbotron {
+    background: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: white;
+}
 
+.jumbotron div {
+    color: black;
+}
 
+.display-4 {
+    padding-top: 50px;
+}
 
+div.buffer {
+    margin-bottom: 500px;
+}
 
+div#Question_1, div#Question_2, div#Question_3, div#Question_4, div#Question_5, div#Question_6, div#Question_7, div#Question_8, div#Question_9, div#Question_10 {
+    background: lightpink;
+    margin-bottom: 10px;
+    opacity: .5;
+    border-radius: 25px;
+    border: 2px solid red;
+}
 
+div#Question_1 p, div#Question_2 p, div#Question_3 p, div#Question_4 p, div#Question_5 p, div#Question_6 p, div#Question_7 p, div#Question_8 p, div#Question_9 p, div#Question_10 p {
+    padding: 10px 0 0 20px;
+    font-weight: bold;
+}
 
+div#Question_1 h4, div#Question_2 h4, div#Question_3 h4, div#Question_4 h4, div#Question_5 h4, div#Question_6 h4, div#Question_7 h4, div#Question_8 h4, div#Question_9 h4, div#Question_10 h4 {
+    padding-left: 20px;
+}
+
+div#gameTimer {
+    width: 40%;
+    height: 100px;
+    margin-left: 2%;
+    padding-top: 20px;
+    color: white;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+h4 {
+    margin-top: 10px;
+}
+
+form {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+label {
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+footer {
+    height: 80px;
+}
 
