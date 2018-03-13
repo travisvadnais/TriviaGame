@@ -1,18 +1,16 @@
 $(document).ready(function () {
+
+    //Hide the calculation Div
+    $("#calculation").hide();
+
     
-    //We'll need an array of objects.  Each object will contain "question: "; "answers: "; and "correct answer: ";
-        //We're going to use a function to create the objects.  Example in Images folder
-    //for each object.answer, we'll need a radio button option.  This needs to be dynamic so if there are 4 answers, 4 radio buttons populate.  If there are 2 answers, 2 radio buttons populate, etc.  Probably need a for loop or a for each function
     //for each question, we'll need to run a function to compare the user's answer w/ the correct answer.
-    //We'll need to set a timer that counts down from xx:xx
     //When time expires, we'll replace the entire Quiz Div w/ a message that says "Time's Up!  Please wait while quiz calculates"
     //This message should play for x amount of seconds and then the calculate quiz function will run
         //This is going to need some sort of failsafe against blank entries so the form doesn't error out
     //we'll need a calculateQuiz function which tallies up the correct/incorrect answers to populate to the DOM, replacing everything in the quiz div
         //This means we'll need a variable for correct & incorrect answers
 
-
-    //In the HTML, we'll need an empty 'Quiz' div.  Here we're going to add a new div for every question.  This will be dynamic.  We're going to use JQuery to push the new question div to the div, and it will be with a FOR EACH loop
 
     //array to hold the 'easy' questions.  Note - they're not in object notation b/c we're going to feed them through a function for formatting
     var quizQuestionsEasy = [
@@ -39,7 +37,11 @@ $(document).ready(function () {
         new quizQuestion("Question_8", "In the film adaptation of Stephen King's 'Misery', which tool did Kathy Bates use to make sure Paul Sheldon did not escape?", ["Chainsaw", "Barbed Wire", "Super Glue", "Sledgehammer"], 3),
         new quizQuestion("Question_9", "What was the pet cat's name in Pet Sematary?", ["Furball", "Church", "Salem", "Shadow"], 1),
         new quizQuestion("Question_10", "In the 1990 movie 'Tremors' with Kevin Bacon, what alerted the giant worms to the characters' whereabouts?", ["Smell of Barbecue", "Radio Waves", "Microwaves", "Vibrations"], 3),
-    ]
+    ];
+
+    //variable used for the timer/countdown
+    var timer;
+    
     //This function formats the questions for us.  Instead of following object notation for 20 questions, we can use the function to format them for us just by feeding it inputs (which are the 'new' items above)
     function quizQuestion(questionNumber, question, choices, correctAnswer) {
         this.questionNumber = questionNumber;
@@ -56,38 +58,43 @@ $(document).ready(function () {
     
     //This function is for the timer that will display
     function startTimer () {
+        timer = setInterval(countDown, 1000);
+
         //declare the counter variable
-        var n = 90;
-        //This function says "Every one second, complete the 'countDown' function"
-        setTimeout(countDown, 1000);
+        var n = 20;
+
         function countDown(){
             //first, we'll decrement the counter by 1
             n--;
-            //Then we'll make sure the counter is still above 1 and, if not, run the function again
+            //Then we'll make sure the counter is still above 1 and log the current value to the DOM
             if(n > 0) {
-                setTimeout(countDown, 1000);
-            }        
-            console.log(n);
-            $("#gameTimer").text("Time Remaining: " + n);
+                console.log(n);
+                $("#gameTimer").text("Time Remaining: " + n);
+            }   
+            //if countdown reaches 0, we'll run the endGame function
+            else if (n < 0) {
+                endGame();
+            }     
         }
     }
     
     function setupGame() {
         //first we need to add a div for each question
         for (var i = 0; i < quizQuestionsEasy.length; i++) {
-            $(".jumbotron").append("<div id=" + quizQuestionsEasy[i].questionNumber + "><p>Question "+ (i+1) + ":" + "</p></div>");
+            $(".gameBoard").append("<div id=" + quizQuestionsEasy[i].questionNumber + "><p>Question "+ (i+1) + ":" + "</p></div>");
             //call next function to add the question to each div
             addQuestion(quizQuestionsEasy[i].questionNumber, quizQuestionsEasy[i].question);
             addChoices(quizQuestionsEasy[i].questionNumber, quizQuestionsEasy[i].choices)
         }
         //This adds a submit button at the bottom of the quiz to finish
-        $(".jumbotron").append("<button type='button' class='btn btn-success' id='gameOver'>I'm Finished!</button>");
+        $(".gameBoard").append("<button type='button' class='btn btn-success' id='gameOver'>I'm Finished!</button>");
         //Clear some stuff out of the jumbotron
         $("p.swap-button").empty();
         $("p.clickInstruct").empty();
         $("div.buffer").remove();
         //Add the timer to the jumbotron
         $("p.swap-button").append("<div id='gameTimer'></div>")
+
     };
 
     //function takes inputs of the question number(div ID) & question itself
@@ -105,13 +112,20 @@ $(document).ready(function () {
         var formIdName = "form#" + qNum;
         //set up a loop to loop through the questionChoices and add a radio button for each
         for (var i = 0; i < choices.length; i++) {
-                $("<label><input type='radio' name='options'>"+ choices[i] + "</label>").appendTo(formIdName);
+            $("<label><input type='radio' name='options'>"+ choices[i] + "</label>").appendTo(formIdName);
         }
     }
 
-    function endQuiz() {
-        $(".jumbotron").empty();
-        $(this).append("<h3>Please Wait while we calculate your results</p>");
+    $(document).on('click', '#gameOver', function() {
+        alert("clicked");
+        window.scroll(0,0);
+        endGame();
+    });
+
+    function endGame() {
+        clearInterval(timer);
+        $(".gameBoard").hide();
+        $("#calculation").show();
     }
 
   

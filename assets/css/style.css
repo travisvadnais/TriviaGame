@@ -6,8 +6,18 @@
     color: white;
 }
 
-.jumbotron div {
+.my-4 {
+    border-top: 1px solid white;
+}
+
+.gameBoard div {
     color: black;
+}
+
+#calculation {
+    margin-top: 20px;
+    color: white;
+    height: 1000px;
 }
 
 .display-4 {

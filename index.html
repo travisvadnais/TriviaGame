@@ -36,18 +36,33 @@
         <h1 class="display-4">Horror Movie Mania!</h1>
         <p class="lead">Think you know the horror genre?  This quiz will put your knowledge to the test.</p>
         <hr class="my-4">
-        <p>The quiz has 10 questions.  Score 70% or higher, and advance to the HARD round!</p>
-        <p>All unanswered questions when time expires will count against your score.</p>
-        <p class="clickInstruct">Click the button whenever you're ready to go!</p>
-        <p class="lead swap-button">
-            <a class="btn btn-primary btn-lg" id="startGame" href="#" role="button">Click to Start!</a>
-        </p>
-        <div class="buffer"></div>
+        
+        <!-- This Div will display once the Start button is clicked and will hide when the game is over -->
+        <div class="gameBoard">            
+            <p>The quiz has 10 questions.  Score 70% or higher, and advance to the HARD round!</p>
+            <p>All unanswered questions when time expires will count against your score.</p>
+            <p class="clickInstruct">Click the button whenever you're ready to go!</p>
+            <p class="lead swap-button">
+                <a class="btn btn-primary btn-lg" id="startGame" href="#" role="button">Click to Start!</a>
+            </p>
+            <div class="buffer"></div>
+        </div>
+
+        <!-- This Div will hide while the game is played and display when it's over -->
+        <div id="calculation">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Thanks for playing!</h1><br>
+                        <h3>Please wait while we calculate your results</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container" id="gameSection">
-        
-    </div>
+
+    
 
 
     <!--Footer-->
