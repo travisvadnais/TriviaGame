@@ -73,7 +73,14 @@ label {
     font-weight: bold;
 }
 
+#finalScore {
+    font-size: 4em;
+    font-weight: 800;
+}
+
 footer {
     height: 80px;
 }
+
+
 
