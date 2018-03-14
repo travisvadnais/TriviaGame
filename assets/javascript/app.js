@@ -71,7 +71,7 @@ $(document).ready(function () {
         timer = setInterval(countDown, 1000);
 
         //declare the counter variable
-        var n = 30;
+        var n = 121;
 
         function countDown(){
             //first, we'll decrement the counter by 1
@@ -79,10 +79,11 @@ $(document).ready(function () {
             //Then we'll make sure the counter is still above 1 and log the current value to the DOM
             if(n > 0) {
                 console.log(n);
-                $("#gameTimer").text("Time Remaining: " + n);
+                $("#gameTimer").text("Time Remaining: " + (n - 1));
             }   
             //if countdown reaches 0, we'll run the endGame function
-            else if (n < 0) {
+            else if (n < 1) {
+                alert("Time's Up!  Press 'OK' to See Your Score");
                 endGame();
             }     
         }
@@ -128,7 +129,6 @@ $(document).ready(function () {
     }
 
     $(document).on('click', '#gameOver', function() {
-        alert("clicked");
         window.scroll(0,0);
         endGame();
     });
@@ -138,14 +138,15 @@ $(document).ready(function () {
         clearInterval(timer);
         //hide the game board
         $(".gameBoard").hide();
-        //let them know we're calculating the score
+        //scroll to top
+        window.scroll(0,0);
+        //show the calculation screen
         $("#calculation").show();
         //get the user's answers by running a loop through the questions and pushing their answers into the 'userAnswers' array
         for (var i = 0; i < quizQuestionsEasy.length; i++) {
             var userInput = $('input[name=Q' + (i + 1) + ']:checked').val();
             userAnswers.push(userInput - 1);
         }
-        alert(userAnswers);
         tallyScore();
     }
 
@@ -160,7 +161,6 @@ $(document).ready(function () {
             }
         }
         var tally = ((answersCorrect / quizQuestionsEasy.length) * 100);
-        alert("Answers Correct: " + answersCorrect + "Answers Wrong: " + answersWrong);
         $("#correctAnswers").text(answersCorrect);
         $("#incorrectAnswers").text(answersWrong);
         $("#finalScore").text(tally + "%");
