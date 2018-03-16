@@ -17,11 +17,11 @@
 #calculation {
     margin-top: 20px;
     color: white;
-    height: 1000px;
+    height: 100%;
 }
 
 .display-4 {
-    padding-top: 50px;
+    padding-top: 0px;
 }
 
 div.buffer {
@@ -73,9 +73,53 @@ label {
     font-weight: bold;
 }
 
+#gameOver {
+    margin-top: 20px;
+}
+
 #finalScore {
     font-size: 4em;
     font-weight: 800;
+}
+
+#villain {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#your_villain {
+    font-size: 2em;
+}
+
+.flex {
+    display: flex;
+    width: 80%;
+}
+
+.flex div {
+    flex: 1;
+}
+
+.flex img {
+    width: 100%;
+    transition: width 1s, height 1s;
+    margin-left: 12%;
+}
+
+img {
+    border: 1px white double;
+    border-radius: 50px;
+    overflow: auto;
+}
+
+#explanation {
+    text-align: center;
+}
+
+
+
+#correctAnswers, #incorrectAnswers {
+    font-size: 2em;
 }
 
 footer {

@@ -5,9 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Horror Movie Trivia</title>
-
   <meta name="author" content="">
   <meta name="description" content="">
 
@@ -19,9 +17,8 @@
 
 <body>
 
-    <!-- Header -->
-
-    <nav class="navbar fixed-top navbar-light bg-light justify-content-between">
+    <!-- Header // Commenting Out for now - possibly for good-->
+    <!-- <nav class="navbar fixed-top navbar-light bg-light justify-content-between">
         <a href="index.html" class="navbar-brand">Travis Vadnais</a>
         <form class="form-inline">
             <ul class="my-2 my-sm-0 list-inline">
@@ -30,7 +27,7 @@
                 <li class="list-inline-item"><a href="https://travisvadnais.github.io/Basic-Portfolio/contact.html">Contact</a></li>
             </ul>
         </form>
-    </nav>
+    </nav> -->
 
     <div class="jumbotron">
         <h1 class="display-4">Horror Movie Mania!</h1>
@@ -39,7 +36,7 @@
         
         <!-- This Div will display once the Start button is clicked and will hide when the game is over -->
         <div class="gameBoard">            
-            <p>The quiz has 10 questions.  Score 70% or higher, and advance to the HARD round!</p>
+            <p>Test your horror movie knowledge and see who your horror movie villain is!</p>
             <p>All unanswered questions when time expires will count against your score.</p>
             <p class="clickInstruct">Click the button whenever you're ready to go!</p>
             <p class="lead swap-button">
@@ -52,32 +49,25 @@
         <div id="calculation">
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-3 left_div">
                         <h1>Thanks for playing!</h1><br>
-                        <h3>Answers Correct: <span id="correctAnswers"></span></h3><br>
-                        <h3>Answers Incorrect: <span id="incorrectAnswers"></span></h3><br>
-                        <h1>Final Score: <span id="finalScore"></span></h1>
+                        <h3>Answers Correct: <br><span id="correctAnswers"></span></h3><br>
+                        <h3>Answers Incorrect: <br><span id="incorrectAnswers"></span></h3><br>
+                        <h1>Final Score: <br><span id="finalScore"></span></h1>
                     </div>
-                    <div class="resultsImage">
-                        
+                    <div class="offset-sm-1 col-sm-8 outcome right_div">
+                        <h3 id="villain">Your Horror Movie Villain is: <br><span id="your_villain"></span></h2>
+                        <div class="flex">
+                            <div>
+                                <img id="villain_image">
+                            </div>
+                        </div>
+                        <h4 id="explanation"></h4>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    
-
-
-    <!--Footer-->
-
-
-
-
-
-
-
 
 
 
